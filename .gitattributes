@@ -9,7 +9,7 @@
 *.xlsx binary
 
 # 原始文件保持字节不变，避免换行转换改变审计哈希
-all.csv binary
+data/raw/all.csv binary
 data/raw/*.csv binary
 rag_sources/official_downloads/* binary
 

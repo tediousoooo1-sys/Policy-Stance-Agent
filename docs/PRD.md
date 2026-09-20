@@ -123,7 +123,7 @@ MVP选择一个执政党、一个主要反对党和一个较小反对党作为�
 
 ### 7.1 原始数据
 
-- 原始 `all.csv`：18,739 行、27 列、4,372 个 division。
+- 原始 `data/raw/all.csv`：18,739 行、27 列、4,372 个 division。
 - Commons 子集：8,948 行、2,091 个 division。
 - 去掉 Reform 后的四党审计数据：8,364 行、2,091 个 division。
 - 原始时间范围：2016-01-06 至 2026-04-27。
@@ -405,9 +405,9 @@ LLM 必须：
 
 ## 16. 项目交付物
 
-- 数据审计、标签、模型、RAG 和 Agent Notebook：`reorganised/01_...` 至 `reorganised/12_...`。
-- 最终测试结果：`reorganised/processed/final_test_three_role_v1/`。
-- 最终 RAG 证据：`reorganised/processed/evidence_precision_v5/`。
-- 最终 Agent 与 200 条评测：`reorganised/processed/final_agent_demo_v1/`。
-- 本 PRD：`reorganised/UK_Parliamentary_Stance_Agent_PRD.md`。
-- 完整工作与迭代记录：`reorganised/UK_Parliamentary_Stance_Agent_Worklog.md`。
+- 数据审计、标签、模型、RAG 和 Agent Notebook：`notebooks/01_data_and_labels/` 至 `notebooks/05_final_system/`。
+- 最终测试结果：本地 `processed/final_test_three_role_v1/`，公开快照位于 `results/`。
+- 最终 RAG 证据：本地 `processed/evidence_precision_v5/`，公开快照位于 `results/`。
+- 最终 Agent 与 200 条评测：本地 `processed/final_agent_demo_v1/`，公开结果位于 `results/`。
+- 本 PRD：`docs/PRD.md`。
+- 完整工作与迭代记录：`docs/WORKLOG.md`。

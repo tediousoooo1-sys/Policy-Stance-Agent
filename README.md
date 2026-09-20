@@ -48,10 +48,11 @@ flowchart LR
 
 ## 从哪里开始读
 
-- [产品需求文档](UK_Parliamentary_Stance_Agent_PRD.md)：产品目标、用户、功能、范围和验收标准。
-- [完整工作记录](UK_Parliamentary_Stance_Agent_Worklog.md)：数据处理、模型选择、失败案例和修改理由。
-- [实验索引](EXPERIMENT_INDEX.md)：38 个 Notebook 的顺序、输入、输出和结论。
-- [数据说明](DATA.md)：字段、时间切分、知识库来源和 Git 管理方式。
+- [产品需求文档](docs/PRD.md)：产品目标、用户、功能、范围和验收标准。
+- [完整工作记录](docs/WORKLOG.md)：数据处理、模型选择、失败案例和修改理由。
+- [实验索引](docs/EXPERIMENT_INDEX.md)：38 个 Notebook 的顺序、输入、输出和结论。
+- [Notebook 阅读顺序](notebooks/README.md)：五个实验文件夹的作用和推荐入口。
+- [数据说明](docs/DATA.md)：字段、时间切分、知识库来源和 Git 管理方式。
 - [结果快照](results/README.md)：最终模型、Agent 评测和图表。
 
 如果只想看最终实现，可先阅读 `09c`、`10`、`11a` 至 `11e` 和 `12`。如果要了解方案为什么变成现在这样，应当从 `01` 开始按编号阅读。
@@ -71,12 +72,12 @@ jupyter lab
 基础数据和标签流程：
 
 ```text
-01_data_audit_and_split.ipynb
-02_bill_linkage_and_polarity_review.ipynb
-03_finalize_labels_and_build_dataset.ipynb
+notebooks/01_data_and_labels/01_data_audit_and_split.ipynb
+notebooks/01_data_and_labels/02_bill_linkage_and_polarity_review.ipynb
+notebooks/01_data_and_labels/03_finalize_labels_and_build_dataset.ipynb
 ```
 
-完整复现应按 [实验索引](EXPERIMENT_INDEX.md) 的顺序运行。多数后续 Notebook 依赖前一步生成的 `processed/` 文件。仓库不提交这些可重新生成的中间文件，只保留关键结果快照。
+完整复现应按 [实验索引](docs/EXPERIMENT_INDEX.md) 的顺序运行。多数后续 Notebook 依赖前一步生成的 `processed/` 文件。仓库不提交这些可重新生成的中间文件，只保留关键结果快照。
 
 需要 LLM 的单元格默认关闭。只有明确启用付费开关并提供 `OPENAI_API_KEY` 时才会调用 API：
 
@@ -88,7 +89,7 @@ export OPENAI_API_KEY="your_api_key_here"
 
 ## 数据与时间切分
 
-原始 `all.csv` 有 18,739 行和 4,372 个 division。最终建模使用 House of Commons 数据，并以 `division_key` 为单位切分：
+原始 `data/raw/all.csv` 有 18,739 行和 4,372 个 division。最终建模使用 House of Commons 数据，并以 `division_key` 为单位切分：
 
 | 数据集 | 时间 | 用途 |
 |---|---|---|
@@ -106,7 +107,7 @@ export OPENAI_API_KEY="your_api_key_here"
 归一化政策立场 = 原始投票方向 × motion polarity
 ```
 
-无法稳定判断的记录进入人工审核或不参与监督学习。完整规则和审核数量见 [工作记录的 polarity 部分](UK_Parliamentary_Stance_Agent_Worklog.md#5-第二阶段为什么必须做-polarity-归一化)。
+无法稳定判断的记录进入人工审核或不参与监督学习。完整规则和审核数量见 [工作记录的 polarity 部分](docs/WORKLOG.md#5-第二阶段为什么必须做-polarity-归一化)。
 
 ## RAG 的证据边界
 
@@ -126,16 +127,17 @@ export OPENAI_API_KEY="your_api_key_here"
 
 ```text
 .
-├── 01_...ipynb 至 12_...ipynb    # 全部实验和调试迭代
-├── build_*.py                    # Notebook 生成脚本
-├── data/raw/bill_info.csv        # UK Parliament Bill 基础信息
+├── notebooks/
+│   ├── 01_data_and_labels/       # 数据审计、Polarity 与最终标签
+│   ├── 02_model_development/     # TF-IDF、Hybrid 与时间验证
+│   ├── 03_rag_retrieval/         # 知识库、检索和证据精度
+│   ├── 04_agent_evaluation/      # 小样本、锁定样本与失败分析
+│   └── 05_final_system/          # 最终模型、Test、RAG 和 Agent
+├── docs/                         # PRD、Worklog、实验索引和数据说明
+├── data/raw/                     # 原始投票与 Bill 数据
 ├── rag_sources/                  # Manifesto 等官方资料
 ├── results/                      # 关键结果快照
-├── scripts/validate_notebooks.py # 不执行模型的静态检查
-├── UK_Parliamentary_Stance_Agent_PRD.md
-├── UK_Parliamentary_Stance_Agent_Worklog.md
-├── EXPERIMENT_INDEX.md
-├── DATA.md
+├── processed/README.md           # 本地生成目录说明
 └── requirements.txt
 ```
 
@@ -147,12 +149,8 @@ export OPENAI_API_KEY="your_api_key_here"
 - Agent 输出是模型分析和 AI 模拟表达，不是政党的正式声明，也不预测单个议员行为。
 - 原始数据和官方文档各有自己的来源与使用条件。发布或再利用前请检查对应来源说明。
 
-## 静态检查
+## 自动检查
 
-下面的命令只检查 Notebook JSON、代码单元语法、文件命名和 Markdown 链接，不训练模型，也不调用 API：
+GitHub Actions 会递归读取 `notebooks/`，检查 Notebook JSON 和 Python 代码单元语法。检查不会运行训练、读取 API Key 或产生付费调用。
 
-```bash
-python scripts/validate_notebooks.py
-```
-
-最终数字、失败实验和人工审核过程均记录在 [完整工作记录](UK_Parliamentary_Stance_Agent_Worklog.md) 中。
+最终数字、失败实验和人工审核过程均记录在 [完整工作记录](docs/WORKLOG.md) 中。

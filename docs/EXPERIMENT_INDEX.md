@@ -34,8 +34,6 @@
 | `06f_rag_direct_evidence_precision_audit.ipynb` | 用 15 条人工 gold cases 校验证据角色 | v5 从 60% 提升到 v5.2 的 100%；Direct 候选从 412 减到 155 |
 | `06g_structured_policy_object_extraction.ipynb` | 把政策对象拆成动作、对象、范围、Bill、Clause 和原文引用 | 2,087 个对象被抽取，但 1,470 个仍需复核，因此保留为诊断工具 |
 | `06h_dense_hybrid_retrieval_evaluation.ipynb` | 盲测 TF-IDF、Dense 和不同权重的 Hybrid | 建立本地 384 维 embedding 对照，不使用 API |
-| `06h_apply_blind_manual_labels.py` | 回填 06h 盲审结果 | 将人工判断与策略名称解盲后汇总 |
-
 ## 07：小规模 LLM 回归
 
 | Notebook | 做了什么 | 结果与去向 |

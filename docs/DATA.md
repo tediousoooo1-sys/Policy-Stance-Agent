@@ -2,7 +2,7 @@
 
 ## 原始投票数据
 
-`all.csv` 是项目的原始抓取结果，共 18,739 行、27 列和 4,372 个 division。每行表示一个 `division_key + party` 组合，不是一个独立议案。
+`data/raw/all.csv` 是项目的原始抓取结果，共 18,739 行、27 列和 4,372 个 division。每行表示一个 `division_key + party` 组合，不是一个独立议案。
 
 主要字段包括：
 

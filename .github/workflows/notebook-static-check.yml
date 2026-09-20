@@ -13,4 +13,31 @@ jobs:
         with:
           python-version: "3.11"
       - name: Validate notebook JSON and code cells
-        run: python scripts/validate_notebooks.py
+        run: |
+          python - <<'PY'
+          import ast
+          import json
+          from pathlib import Path
+
+          paths = sorted(Path("notebooks").rglob("*.ipynb"))
+          assert len(paths) == 38, f"Expected 38 notebooks, found {len(paths)}"
+
+          checked = 0
+          for path in paths:
+              notebook = json.loads(path.read_text(encoding="utf-8"))
+              assert notebook.get("nbformat") == 4, f"Unexpected nbformat: {path}"
+              for index, cell in enumerate(notebook.get("cells", []), start=1):
+                  if cell.get("cell_type") != "code":
+                      continue
+                  source = cell.get("source", [])
+                  source = "".join(source) if isinstance(source, list) else str(source)
+                  source = "\n".join(
+                      line for line in source.splitlines()
+                      if not line.lstrip().startswith(("%", "!"))
+                  )
+                  if source.strip():
+                      ast.parse(source, filename=f"{path}:cell-{index}")
+                  checked += 1
+
+          print(f"Validated {len(paths)} notebooks and {checked} code cells")
+          PY

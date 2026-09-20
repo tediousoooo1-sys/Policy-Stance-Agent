@@ -66,7 +66,7 @@ flowchart TD
 
 ### 4.1 我们有什么数据
 
-原始文件 `all.csv` 有：
+原始文件 `data/raw/all.csv` 有：
 
 - 18,739 行；
 - 27 个原始字段；
