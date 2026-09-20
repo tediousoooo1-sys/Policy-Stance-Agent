@@ -1,0 +1,32 @@
+=== FINAL AGENT DEMO SUMMARY FOR REVIEW ===
+Notebook version: 12-final-agent-demo-v1
+Frozen model: role_prior_blend_50_50
+Freeze SHA-256 verified: True
+Public prediction rows: 975
+Unique divisions: 354
+In-scope parties: ['labour', 'conservative', 'liberal-democrat']
+Final Test Macro-F1: 0.801
+Final Test Accuracy: 0.808
+Final Test ROC-AUC: 0.869
+Final Test Brier: 0.170
+Evidence rows: 331
+Queries with Direct evidence: 0.012
+Queries with any external material: 0.239
+Prediction model changed: False
+Retrieval rules changed: False
+RAG changes probability: False
+Row-level Test labels read: False
+LLM demo enabled: False
+New API calls this run: 0
+Completed cached LLM cases: 16
+Actual cached LLM cost (USD): 0.005065
+LLM hard budget (USD): 0.25
+Locked 200 evaluation enabled: True
+Locked evaluation cases completed: 200
+Locked evaluation new calls this run: 200
+Locked evaluation actual cost (USD): 0.063595
+Locked evaluation hard budget (USD): 0.50
+Structural gates: {'prediction_row_id_unique_gate': True, 'packet_row_id_unique_gate': True, 'all_predictions_have_packet_gate': True, 'three_parties_only_gate': True, 'primary_model_gate': True, 'freeze_hash_gate': True, 'no_row_level_test_label_gate': True, 'rag_does_not_change_probability_gate': True, 'rag_not_second_predictor_gate': True, 'prediction_not_overridden_gate': True}
+Output directory: /Users/oooo1/01Course/2_70202Applying/reorganised/processed/final_agent_demo_v1
+Next step: write the report and prepare the presentation; technical development is complete.
+=== END FINAL AGENT DEMO SUMMARY ===

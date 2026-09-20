@@ -1,0 +1,17 @@
+*.ipynb linguist-language=Jupyter Notebook
+*.csv text eol=lf
+*.json text eol=lf
+*.jsonl text eol=lf
+*.md text eol=lf
+*.py text eol=lf
+*.pdf binary
+*.png binary
+*.xlsx binary
+
+# 原始文件保持字节不变，避免换行转换改变审计哈希
+all.csv binary
+data/raw/*.csv binary
+rag_sources/official_downloads/* binary
+
+# 结果表可以查看，但不在 Git diff 中展开成数千行
+results/*.csv -diff

@@ -1,0 +1,50 @@
+{
+  "notebook_version": "10-frozen-three-role-final-test-v1",
+  "completed_at_utc": "2026-09-19T19:51:34.495696+00:00",
+  "run_complete": true,
+  "run_mode": "new_final_test_run",
+  "freeze_sha256": "175a2caaa62756fc0a47545afed76f2b07d233409cee20bafcfeb14d6bddd2fc",
+  "development_sha256": "e122a1adc050830a60d476ab6b796d12d07756aaf03b55e306525761ea0abdee",
+  "test_features_sha256": "5462889cc10dde439e3127ac7d062897f0435ef05d16f2e69e5ff0836c7533fc",
+  "test_labels_sha256": "1f20c58d7a5ff0b66e616887b3be9237a5dfcdd5268fb19efcb606f65c36c319",
+  "primary_model": "role_prior_blend_50_50",
+  "baseline_model": "rolling_100_party_prior",
+  "in_scope_parties": [
+    "labour",
+    "conservative",
+    "liberal-democrat"
+  ],
+  "out_of_scope_parties": [
+    "green"
+  ],
+  "test_start": "2025-01-14",
+  "test_end": "2026-04-27",
+  "test_rows": 975,
+  "test_divisions": 354,
+  "acceptance_gates": {
+    "final_macro_f1_gate": true,
+    "baseline_improvement_gate": true,
+    "worst_party_gate": false,
+    "worst_year_gate": true,
+    "brier_gate": true,
+    "coverage_gate": true,
+    "freeze_hash_gate": true
+  },
+  "final_test_passes": false,
+  "primary_macro_f1": 0.8007988803438506,
+  "baseline_macro_f1": 0.40825761767908464,
+  "improvement_over_baseline": 0.39254126266476597,
+  "worst_party_macro_f1": 0.455535390199637,
+  "worst_year_macro_f1": 0.7821378316805145,
+  "primary_brier": 0.16965177741657528,
+  "prediction_coverage": 1.0,
+  "bootstrap_macro_f1_ci_95": {
+    "iterations": 1000,
+    "ci_95_low": 0.7716906824237303,
+    "ci_95_high": 0.827514434708923
+  },
+  "api_calls": 0,
+  "llm_calls": 0,
+  "rag_used_for_prediction": false,
+  "model_selection_after_test_allowed": false
+}

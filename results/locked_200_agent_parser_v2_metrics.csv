@@ -1,0 +1,7 @@
+metric,value
+rows,200.0
+prediction_consistency_rate_v2,1.0
+probability_consistency_rate_v2,1.0
+original_prediction_consistency_rate_v1,0.99
+original_probability_consistency_rate_v1,0.9
+new_api_calls,0.0

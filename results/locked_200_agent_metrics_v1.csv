@@ -1,0 +1,10 @@
+metric,value
+completion_rate,1.0
+prediction_consistency_rate,0.99
+probability_consistency_rate,0.9
+citation_validity_rate,1.0
+invalid_citation_rate,0.0
+citation_coverage_rate,1.0
+no_evidence_fallback_accuracy,1.0
+overclaim_proxy_rate,0.0
+actual_cost_usd,0.06359490000000001
