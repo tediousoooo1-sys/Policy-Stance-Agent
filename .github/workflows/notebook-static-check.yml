@@ -20,7 +20,7 @@ jobs:
           from pathlib import Path
 
           paths = sorted(Path("notebooks").rglob("*.ipynb"))
-          assert len(paths) == 38, f"Expected 38 notebooks, found {len(paths)}"
+          assert len(paths) == 40, f"Expected 40 notebooks, found {len(paths)}"
 
           checked = 0
           for path in paths:

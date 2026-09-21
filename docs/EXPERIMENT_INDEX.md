@@ -74,6 +74,13 @@
 | `11e_direct_evidence_firewall_and_review.ipynb` | 对全部 Direct 再做防火墙，并导出人工复核表 | Direct 查询率降为 1.2%，最终证据规则冻结 |
 | `12_final_agent_demo_and_report_outputs.ipynb` | 组装最终预测、证据、LLM 解释、200 条评测和党派发言示例 | 技术流程完成；200 条 LLM 调用成本约 0.0636 美元 |
 
+## 13：未见 motion 与交互式 Agent
+
+| Notebook | 做了什么 | 结果与去向 |
+|---|---|---|
+| `13_unseen_motion_agent_orchestration.ipynb` | 从外部 Parquet 选择 4 个不在原项目数据中的 motion，让 LLM 提议任务合同，再由控制器调用预测、检索、证据检查和有限重试 | 3 个单一政策对象进入三党预测，1 个多议题 motion 停在解释层；完整工具轨迹可以审计 |
+| `13b_interactive_debate_agent.ipynb` | 在冻结预测和证据包上增加自然语言提问、动态发言篇幅、辩论要点、反方论点、回应和连续追问 | 形成可展示的本地交互原型；LLM 负责规划和表达，模型概率与证据等级仍由程序锁定 |
+
 ## 如何理解这些版本
 
 Notebook 中的 acceptance gate 是开发时预先写下的产品标准，用来阻止看到结果后随意降低要求。它们不是统计学定律。报告会同时写出实际提升和是否达到当时门槛，避免把“没有通过进取门槛”误写成“模型没有改进”。

@@ -1,6 +1,6 @@
 # Notebook 阅读顺序
 
-仓库保留38个 Notebook。它们既包含最终方案，也包含没有通过验证的尝试。建议从仓库根目录运行 `jupyter lab`，这样 Notebook 中的 `Path.cwd()` 会指向正确的项目目录。
+仓库保留 40 个 Notebook。它们既包含最终方案，也包含没有通过验证的尝试。建议从仓库根目录运行 `jupyter lab`，这样 Notebook 中的 `Path.cwd()` 会指向正确的项目目录。
 
 ## 1. 数据与标签
 
@@ -30,6 +30,8 @@
 
 目录：[`05_final_system`](05_final_system/)
 
-完成 Walk-forward 模型挑战、三角色范围冻结、一次性最终 Test、最终证据防火墙和200条 Agent 评测。`12_final_agent_demo_and_report_outputs.ipynb` 是最终演示入口。
+这一阶段完成 Walk-forward 模型挑战、三角色范围冻结、一次性最终 Test、最终证据防火墙和 200 条 Agent 评测。
+
+`12_final_agent_demo_and_report_outputs.ipynb` 是冻结系统演示入口。`13_unseen_motion_agent_orchestration.ipynb` 使用 4 个外部未见 motion，演示原始文本解析、部署模型刷新、工具选择、Hybrid RAG、一次补充检索和可选 LLM 报告。`13b_interactive_debate_agent.ipynb` 在 `13` 的冻结结果上增加自然语言对话、模拟党派发言、政策效果、三个 debate points、反方观点和回应。
 
 每个 Notebook 的具体结果与去向见 [`docs/EXPERIMENT_INDEX.md`](../docs/EXPERIMENT_INDEX.md)。
